@@ -4,7 +4,7 @@
    
 [<img src="https://img.shields.io/badge/HuggingFace-Artifacts-black?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=ff7f1e" alt="View on Hugging Face"/>](https://huggingface.co/YOUR-HF-REPO)
 
-A Steam-powered game recommendation web app that learns user taste from liked games and returns high-similarity suggestions with explainable profile data. NextQuest uses a multimodal retrieval pipeline (text + image + numeric features) with FAISS indexing, served through FastAPI and a React frontend.
+A SteamAPI-powered game recommendation web app that learns user taste from liked games and returns high-similarity suggestions with game profile data. NextQuest uses a multimodal retrieval pipeline (text + image + numeric features) with FAISS indexing, delivered through FastAPI and a React frontend.
 
 <p>
   <a href="#overview"><img src="https://img.shields.io/badge/Overview-111111?style=for-the-badge" alt="Overview"></a>
@@ -35,6 +35,7 @@ NextQuest uses Steam APIs for:
 - review snapshots
 - current player counts
 Notes:
+- Your steam ID can be found under account details on the Steam website. It's a 17-digit ID.
 - some profiles may be private or unavailable
 - metadata completeness can vary by title
 
