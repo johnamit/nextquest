@@ -39,7 +39,7 @@ Notes:
 - some profiles may be private or unavailable
 - metadata completeness can vary by title
 
-Note: This repository does not include runtime data. Download the full data/ folder from the Hugging Face repo and place it at the project root (same level as frontend/, scripts/, and README.md) before training or running inference locally.
+Note: This repository does not include runtime data. Download the full data/ folder from the Hugging Face [repo](https://huggingface.co/datasets/johnamit/nextquest-data) and place it at the project root (same level as frontend/, scripts/, and README.md) before training or running inference locally.
 
 ## Training
 If you want to rebuild the catalog and recommender artifacts locally:
@@ -72,35 +72,41 @@ node ./node_modules/vite/bin/vite.js
 ```
 
 Open:
-- Frontend: http://localhost:5173
-- Backend: http://localhost:8000
+- **Frontend**: http://localhost:5173
+- **Backend**: http://localhost:8000
 
-Live App: https://nextquest-ochre.vercel.app/
+**Live App**: https://nextquest-ochre.vercel.app/
 
 ## Citations
-FAISS
+**FAISS**
+```bibtex
 @article{johnson2019billion,
   title={Billion-scale similarity search with GPUs},
   author={Johnson, Jeff and Douze, Matthijs and J{\'e}gou, Herv{\'e}},
   journal={IEEE Transactions on Big Data},
   year={2019}
 }
+```
 
-Sentence-BERT / Sentence Transformers
+**Sentence-BERT / Sentence Transformers**
+```bibtex
 @inproceedings{reimers2019sentence,
   title={Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks},
   author={Reimers, Nils and Gurevych, Iryna},
   booktitle={EMNLP-IJCNLP},
   year={2019}
 }
+```
 
-CLIP
+**CLIP**
+```bibtex
 @inproceedings{radford2021learning,
   title={Learning Transferable Visual Models From Natural Language Supervision},
   author={Radford, Alec and Kim, Jong Wook and Hallacy, Chris and et al.},
   booktitle={ICML},
   year={2021}
 }
+```
 
 # License
 This project is released under the MIT License.
