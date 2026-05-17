@@ -135,7 +135,7 @@ function GameSelectionPage() {
           </button>
         </div>
         <img className="page-brand-logo" src={nextQuestLogo} alt="NextQuest" />
-        <p className="subtext">Select from your Steam library or from all catalog games.</p>
+        <p className="subtext">Select games you like from your Steam library or from the catalog of games.</p>
       
         <div className="mode-switch">
           <button

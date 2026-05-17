@@ -32,8 +32,7 @@ function RecommendationsPage() {
           </button>
         </div>
         <img className="page-brand-logo" src={nextQuestLogo} alt="NextQuest" />
-        <h1>Top Recommendations</h1>
-        <p className="subtext">Based on your selected games</p>
+        <p className="subtext">Top recommendations based on your selected games</p>
   
         <div className="results-actions">
           <button className="manual-submit-btn" onClick={() => navigate("/select")}>
