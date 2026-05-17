@@ -4,11 +4,6 @@ import { useAppSession } from "../context/AppSessionContext";
 import { getSteamLibrary } from "../services/apiClient";
 import nextQuestLogo from "../assets/nextquest.png";
 const STEAM_ID_LENGTH = 17;
-const MIN_TRANSITION_MS = 650;
-
-function sleep(milliseconds) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
 
 function sanitizeSteamId(value) {
   return String(value || "").replace(/\D/g, "").slice(0, STEAM_ID_LENGTH);
@@ -47,7 +42,6 @@ function LoginPage() {
       return;
     }
     setIsLoading(true);
-    const requestStartedAt = Date.now();
     try {
       const result = await getSteamLibrary(trimmedSteamId);
       if (!result.data || result.data.length === 0) {
@@ -57,11 +51,6 @@ function LoginPage() {
       setOwnedGames(result.data);
       resetSelectionState();
       resetRecommendationState();
-
-      const elapsed = Date.now() - requestStartedAt;
-      if (elapsed < MIN_TRANSITION_MS) {
-        await sleep(MIN_TRANSITION_MS - elapsed);
-      }
 
       navigate("/select");
     } catch (error) {

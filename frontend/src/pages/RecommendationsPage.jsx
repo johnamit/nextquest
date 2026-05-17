@@ -7,7 +7,12 @@ import nextQuestLogo from "../assets/nextquest.png";
 function RecommendationsPage() {
   const navigate = useNavigate();
 
-  const { recommendations, profileAppId, setProfileAppId } = useAppSession();
+  const { recommendations, profileAppId, setProfileAppId, resetAllSession } = useAppSession();
+
+  function handleLogout() {
+    resetAllSession();
+    navigate("/");
+  }
 
   const topRecommendations = useMemo(() => {
     return (recommendations || []).slice(0, 9);
@@ -21,6 +26,11 @@ function RecommendationsPage() {
   return (
     <main className="app">
       <section className="results-section">
+        <div className="page-topbar">
+          <button type="button" className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
         <img className="page-brand-logo" src={nextQuestLogo} alt="NextQuest" />
         <h1>Top Recommendations</h1>
         <p className="subtext">Based on your selected games</p>

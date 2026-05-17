@@ -5,12 +5,6 @@ import { getGamesCatalog, getRecommendations } from "../services/apiClient";
 import GameProfileModal from "../components/GameProfileModal";
 import nextQuestLogo from "../assets/nextquest.png";
 
-const MIN_TRANSITION_MS = 650;
-
-function sleep(milliseconds) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
-
 function GameSelectionPage() {
   const navigate = useNavigate();
 
@@ -27,6 +21,7 @@ function GameSelectionPage() {
     setBlockedAppIds,
     setActiveQuery,
     resetRecommendationState,
+    resetAllSession,
   } = useAppSession();
 
   const [searchText, setSearchText] = useState("");
@@ -87,7 +82,7 @@ function GameSelectionPage() {
     });
   }
 
-   async function handleGetRecommendations() {
+  async function handleGetRecommendations() {
     setErrorText("");
 
     if (selectedAppIds.length === 0) {
@@ -96,7 +91,6 @@ function GameSelectionPage() {
     }
     
     setIsSubmitting(true);
-    const requestStartedAt = Date.now();
     try {
       const likedAppIdsText = selectedAppIds.join(",");
       const result = await getRecommendations({
@@ -118,11 +112,6 @@ function GameSelectionPage() {
         mode: "manual",
         liked_app_ids: likedAppIdsText,
       });
-
-      const elapsed = Date.now() - requestStartedAt;
-      if (elapsed < MIN_TRANSITION_MS) {
-        await sleep(MIN_TRANSITION_MS - elapsed);
-      }
       
       navigate("/recommendations");
     } catch (error) {
@@ -132,9 +121,19 @@ function GameSelectionPage() {
     }
   }
 
+  function handleLogout() {
+    resetAllSession();
+    navigate("/");
+  }
+
   return (
     <main className="app">
       <section className="results-section">
+        <div className="page-topbar">
+          <button type="button" className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
         <img className="page-brand-logo" src={nextQuestLogo} alt="NextQuest" />
         <p className="subtext">Select from your Steam library or from all catalog games.</p>
       
@@ -164,7 +163,20 @@ function GameSelectionPage() {
           placeholder="Search games..."
           disabled={isLoadingGames || isSubmitting}
         />
-      
+
+        <div className="results-actions">
+          <p className="subtext selection-count">
+            Selected: {selectedAppIds.length} {selectedAppIds.length === 1 ? "game" : "games"}
+          </p>
+          <button
+            className="manual-submit-btn"
+            onClick={handleGetRecommendations}
+            disabled={isSubmitting || isLoadingGames || selectedAppIds.length === 0}
+          >
+            {isSubmitting ? "Loading..." : "Get Recommendations"}
+          </button>
+        </div>
+       
         {isLoadingGames && <p className="subtext">Loading games...</p>}
       
         {!isLoadingGames && (
@@ -208,19 +220,7 @@ function GameSelectionPage() {
             </div>
           </div>
         )}
-      
-        {selectedAppIds.length > 0 && (
-          <div className="results-actions">
-            <button
-              className="manual-submit-btn"
-              onClick={handleGetRecommendations}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Loading..." : "Get Recommendations"}
-            </button>
-          </div>
-        )}
-      
+
         {errorText !== "" && <p className="error-text">{errorText}</p>}
       </section>
 
