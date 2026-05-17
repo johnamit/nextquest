@@ -1,8 +1,8 @@
 <img src="frontend/src/assets/nextquest.png" alt="NextQuest" width="900"><br>
 
-[<img src="https://img.shields.io/badge/Live%20App-NextQuest-black?style=for-the-badge&labelColor=EC5705&logo=vercel&logoColor=white" alt="Open Live App"/>](https://YOUR-LIVE-APP-URL)
+[<img src="https://img.shields.io/badge/Live%20App-NextQuest-black?style=for-the-badge&labelColor=EC5705&logo=vercel&logoColor=white" alt="Open Live App"/>](https://nextquest-ochre.vercel.app/)
    
-[<img src="https://img.shields.io/badge/HuggingFace-Artifacts-black?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=ff7f1e" alt="View on Hugging Face"/>](https://huggingface.co/YOUR-HF-REPO)
+[<img src="https://img.shields.io/badge/HuggingFace-Artifacts-black?style=for-the-badge&logo=huggingface&logoColor=FFD21E&labelColor=ff7f1e" alt="View on Hugging Face"/>](https://huggingface.co/datasets/johnamit/nextquest-data)
 
 A SteamAPI-powered game recommendation web app that learns user taste from liked games and returns high-similarity suggestions with game profile data. NextQuest uses a multimodal retrieval pipeline (text + image + numeric features) with FAISS indexing, delivered through FastAPI and a React frontend.
 
@@ -75,7 +75,7 @@ Open:
 - Frontend: http://localhost:5173
 - Backend: http://localhost:8000
 
-Live App: https://YOUR-LIVE-APP-URL
+Live App: https://nextquest-ochre.vercel.app/
 
 ## Citations
 FAISS
