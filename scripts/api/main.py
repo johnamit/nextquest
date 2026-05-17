@@ -3,6 +3,10 @@ import math
 from pathlib import Path
 import re
 
+import os
+import shutil
+from huggingface_hub import snapshot_download
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,6 +19,13 @@ from scripts.pipeline.recommend_from_games import generate_recommendations
 
 load_dotenv()
 
+REQUIRED_DATA_FILES = [
+    "data/artifacts/game_genome_metadata.parquet",
+    "data/features/game_features.parquet",
+    "data/processed/games_catalog.parquet",
+    "data/processed/reviews_catalog.parquet",
+]
+
 app = FastAPI(title="NextQuest Recommendation System API")
 
 app.add_middleware(
@@ -24,6 +35,45 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+def validate_required_data_files() -> None:
+    missing_paths = [file_path for file_path in REQUIRED_DATA_FILES if not Path(file_path).exists()]
+    if missing_paths:
+        raise RuntimeError(f"Missing required data files: {missing_paths}")
+
+
+def sync_data_from_hf() -> None:
+    hf_repo_id = os.getenv("HF_REPO_ID", "").strip()
+    hf_repo_type = os.getenv("HF_REPO_TYPE", "dataset").strip()
+    hf_revision = os.getenv("HF_REVISION", "").strip() or None
+
+    if hf_repo_id == "":
+        raise RuntimeError("HF_REPO_ID is required for startup data sync.")
+
+    snapshot_path = snapshot_download(
+        repo_id=hf_repo_id,
+        repo_type=hf_repo_type,
+        revision=hf_revision,
+        local_dir=None,
+        local_dir_use_symlinks=False,
+    )
+
+    source_data_dir = Path(snapshot_path) / "data"
+    if not source_data_dir.exists():
+        raise RuntimeError(f"HF snapshot missing top-level data/ folder: {source_data_dir}")
+
+    target_data_dir = Path("data")
+    if target_data_dir.exists():
+        shutil.rmtree(target_data_dir)
+    shutil.copytree(source_data_dir, target_data_dir)
+
+    validate_required_data_files()
+
+
+@app.on_event("startup")
+def startup_data_sync():
+    sync_data_from_hf()
 
 
 # Cleaning for JSON helper functions

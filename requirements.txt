@@ -11,3 +11,4 @@ torch==2.11.0
 Pillow==12.2.0
 tqdm==4.67.3
 faiss-cpu==1.13.2
+huggingface-hub==1.15.0
