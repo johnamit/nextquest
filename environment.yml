@@ -1,0 +1,21 @@
+name: nextquest
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - fastapi==0.136.1
+      - uvicorn==0.46.0
+      - python-dotenv==1.2.2
+      - requests==2.33.1
+      - pandas==2.3.3
+      - numpy==2.2.6
+      - pyarrow==24.0.0
+      - scikit-learn==1.7.2
+      - sentence-transformers==5.4.1
+      - torch==2.11.0
+      - Pillow==12.2.0
+      - tqdm==4.67.3
+      - faiss-cpu==1.13.2

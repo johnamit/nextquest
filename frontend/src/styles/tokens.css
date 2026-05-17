@@ -1,0 +1,51 @@
+/* For base of the web app */
+:root {
+  font-family: "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  color: #f6f7f1;
+  background: #0e0e0c;
+  --bg-0: #0e0e0c;
+  --bg-1: #12120f;
+  --panel: rgba(28, 28, 24, 0.78);
+  --panel-border: rgba(170, 171, 164, 0.28);
+  --text-primary: #f6f7f1;
+  --text-secondary: #aaaba4;
+  --text-muted: #838480;
+  --accent: #ec5705;
+  --accent-strong: #f1762f;
+  --accent-soft: rgba(236, 87, 5, 0.24);
+  --glow-soft: rgba(236, 87, 5, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-0);
+}
+
+h1 {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: clamp(30px, 2.8vw, 44px);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+}
+
+.subtext {
+  margin: 0 0 16px;
+  color: var(--text-secondary);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.error-text {
+  margin-top: 12px;
+  color: var(--accent-strong);
+  text-align: center;
+}
