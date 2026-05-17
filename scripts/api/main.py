@@ -56,7 +56,6 @@ def sync_data_from_hf() -> None:
         repo_type=hf_repo_type,
         revision=hf_revision,
         local_dir=None,
-        local_dir_use_symlinks=False,
     )
 
     source_data_dir = Path(snapshot_path) / "data"
