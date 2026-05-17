@@ -60,6 +60,10 @@
   min-height: 48px;
 }
 
+.recommendations-actions {
+  justify-content: center;
+}
+
 .selection-count {
   margin: 0;
 }

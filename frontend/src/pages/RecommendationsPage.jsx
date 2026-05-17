@@ -34,7 +34,7 @@ function RecommendationsPage() {
         <img className="page-brand-logo" src={nextQuestLogo} alt="NextQuest" />
         <p className="subtext">Top recommendations based on your selected games</p>
   
-        <div className="results-actions">
+        <div className="results-actions recommendations-actions">
           <button className="manual-submit-btn" onClick={() => navigate("/select")}>
             Back to Game Selection
           </button>
