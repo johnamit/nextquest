@@ -38,7 +38,7 @@ Notes:
 - some profiles may be private or unavailable
 - metadata completeness can vary by title
 
-Note: This repository does not include runtime data; download the full data/ folder from the Hugging Face repo and place it at the project root (same level as frontend/, scripts/, and README.md) before running the app.`
+Note: This repository does not include runtime data. Download the full data/ folder from the Hugging Face repo and place it at the project root (same level as frontend/, scripts/, and README.md) before running the app.
 
 ## Training
 If you want to rebuild the catalog and recommender artifacts locally:
